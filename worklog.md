@@ -146,3 +146,26 @@ Stage Summary:
 - Lint clean; dev server GET / 200, no errors.
 - Agent-browser confirmed: 0 buttons in #door section, image products/door-station.png present, text content intact.
 - VLM confirmed: no simulate button / interactive widget; section is descriptive text + static image only.
+
+---
+Task ID: 6
+Agent: main (Z.ai Code)
+Task: Add a minimal black necklace cord to the hero tracker image; generate real product photos (necklace, belt, cane, child bag) for the "یک دستگاه، کاربردهای بی‌شمار" section using the hero as the style reference, warm minimalist background matching the site theme.
+
+Work Log:
+- Backed up original hero to public/products/hero-tracker-original.png.
+- Wrote a one-off script (scripts/gen-product-images.ts, since deleted) using z-ai-web-dev-sdk `images.generations.edit` with the hero image as a base64 data-URL reference. The CLI `z-ai image-edit` rejected local files (error 1210), so used the SDK directly.
+- Generated 5 images, each preserving the device (matte deep teal pebble, terracotta accent ring, central button) and the warm ivory background + soft lamplight glow:
+  1. hero-tracker.png — added a thin minimal matte black cord looping up like a necklace/lanyard.
+  2. use-necklace.png — device worn as a pendant on a black cord necklace.
+  3. use-belt.png — device clipped to a folded brown leather belt.
+  4. use-cane.png — device strapped to the upper shaft of a wooden walking cane.
+  5. use-bag.png — device clipped to the side strap of a small muted child backpack.
+- Rewrote src/components/aramsan/product-showcase.tsx: replaced the 4 custom SVG mini-illustrations (Necklace/Belt/Cane/Bag Illustration + Pebble helper) with the 4 real product images. Each card now shows the photo in a rounded ivory panel (h-52, object-cover, hover scale 1.04). Card padding tightened to p-4 to frame the photos cleanly.
+- Hero component unchanged — it already references /products/hero-tracker.png, so the new necklace version shows automatically.
+
+Stage Summary:
+- Lint clean; dev server GET / 200, no errors.
+- VLM (glm-4.6v) verified from raw image files: hero has "thin black cord/necklace strap attached… looping up like a necklace"; all 4 use-case images correctly show device on necklace / belt / cane / child backpack with warm beige background.
+- VLM verified from rendered-page screenshots: hero shows the cord; showcase has 4 cards each with a real product photo matching necklace/belt/cane/bag.
+- Kept hero-tracker-original.png as a backup; removed the gen script.
