@@ -79,3 +79,28 @@ Stage Summary:
   • Scene 2: tracker "highlighted with a glow… orange" + "charging dock is next to the door (right of it)".
   • Scene 5: phone notification with terracotta circle + checkmark visible; father figure correctly absent (exited).
 - Scene indicators correctly advance with scroll (۱/۶ → ۲/۶ → ۴/۶ → ۵/۶).
+
+---
+Task ID: 3
+Agent: main (Z.ai Code)
+Task: Make the story section auto-play (independent of scroll), medium speed, and enlarge the caption with a background.
+
+Work Log:
+- src/components/aramsan/story-scrollytelling.tsx — converted from scroll-scrubbed to time-driven auto-play:
+  - Replaced `useScroll()` + `scrollYProgress` with a `useMotionValue(0)` named `progress`, animated 0→1 over `DURATION = 25`s (≈4.2s/scene — not too fast, not too slow) via framer-motion `animate(progress, 1, { duration, ease: "linear" })`.
+  - Auto-starts when the section enters the viewport (`useInView(ref, { amount: 0.45 })`); the effect re-runs on inView toggle or replay.
+  - Replay: `runId` state; clicking "دوباره ببین" increments it → effect cleanup stops the old animation and starts a fresh 0→1 run.
+  - Replaced every `scrollYProgress` reference with `progress` (figure walk, tracker highlight, door-station glow, sound waves, phone notification, terracotta flash, calm checkmark, scene dots, progress number).
+  - Removed the 720vh height + sticky wrapper — section is now a single `h-screen min-h-[640px]` viewport. Page dropped from ~20 viewports to 12.
+  - Replay button is now always visible (removed the late-fade-in) so users can restart anytime.
+- Caption redesign:
+  - Wrapped the caption stack in a warm panel: `rounded-2xl bg-warmwhite/85 backdrop-blur-md border border-divider/60 shadow-…` with `px-6 py-4 sm:px-8 sm:py-5`.
+  - Enlarged text from `text-[1.15rem] sm:text-[1.35rem] font-medium` → `text-[1.35rem] sm:text-[1.7rem] font-semibold`.
+  - Caption now centers vertically in the panel (`flex items-center justify-center`), min-height 4.5rem / 5rem.
+
+Stage Summary:
+- Lint clean; dev server GET / 200, no errors.
+- Agent-browser verified the full auto-play timeline without scrolling: 3s→۱/۶, 9s→۳/۶, 17s→۵/۶, 26s→۶/۶ (story completes on its own).
+- Replay verified: ۶/۶ → click → ۲s: ۱/۶ → ۷s: ۲/۶ → ۱۲s: ۳/۶ (clean restart).
+- VLM confirmed caption: "sits on a visible background panel/card… light-colored (off-white/cream) box behind the text… large and highly readable… bold".
+- Scrolling past the story still flows naturally into the Product Showcase section.

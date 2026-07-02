@@ -2,11 +2,13 @@
 
 import {
   motion,
-  useScroll,
+  useInView,
+  useMotionValue,
   useTransform,
+  animate,
   MotionValue,
 } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toFa } from "@/lib/format";
 
 const SCENES = [
@@ -17,6 +19,9 @@ const SCENES = [
   "خانواده مطلع می‌شوند.",
   "همه با آرامش به زندگی ادامه می‌دهند.",
 ];
+
+// Total auto-play duration (~4.2s per scene — not too fast, not too slow)
+const DURATION = 25;
 
 /** Map a segment of progress to a fade-in/hold/fade-out opacity. */
 function useSegOpacity(
@@ -35,36 +40,50 @@ function useSegOpacity(
 
 export function StoryScrollytelling() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+  const inView = useInView(ref, { amount: 0.45 });
+
+  // Time-driven progress (0..1) — auto-plays, independent of scroll.
+  // Auto-plays when the section enters the viewport; replay restarts it.
+  const progress = useMotionValue(0);
+  const [runId, setRunId] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    progress.set(0);
+    const controls = animate(progress, 1, {
+      duration: DURATION,
+      ease: "linear",
+    });
+    return () => controls.stop();
+  }, [inView, runId, progress]);
+
+  const replay = () => setRunId((n) => n + 1);
 
   // Caption opacities — one per scene
   const caps = [
-    useSegOpacity(scrollYProgress, 0 / 6, 1 / 6),
-    useSegOpacity(scrollYProgress, 1 / 6, 2 / 6),
-    useSegOpacity(scrollYProgress, 2 / 6, 3 / 6),
-    useSegOpacity(scrollYProgress, 3 / 6, 4 / 6),
-    useSegOpacity(scrollYProgress, 4 / 6, 5 / 6),
-    useSegOpacity(scrollYProgress, 5 / 6, 6 / 6),
+    useSegOpacity(progress, 0 / 6, 1 / 6),
+    useSegOpacity(progress, 1 / 6, 2 / 6),
+    useSegOpacity(progress, 2 / 6, 3 / 6),
+    useSegOpacity(progress, 3 / 6, 4 / 6),
+    useSegOpacity(progress, 4 / 6, 5 / 6),
+    useSegOpacity(progress, 5 / 6, 6 / 6),
   ];
 
   // Active scene index (for dots)
-  const activeScene = useTransform(scrollYProgress, (v) =>
+  const activeScene = useTransform(progress, (v) =>
     Math.min(5, Math.floor(v * 6 + 0.0001))
   );
 
   // Father walks from the interior (right) toward the door (left) and exits.
   // He passes right by the charging dock (~x=210) on his way out.
   const figureX = useTransform(
-    scrollYProgress,
+    progress,
     [0, 0.08, 0.14, 0.18, 0.22, 1],
     [560, 400, 250, 140, 30, 20],
     { clamp: true }
   );
   const figureOpacity = useTransform(
-    scrollYProgress,
+    progress,
     [0, 0.18, 0.22, 0.26, 1],
     [1, 1, 0.85, 0, 0],
     { clamp: true }
@@ -72,7 +91,7 @@ export function StoryScrollytelling() {
 
   // Tracker on the charging dock gets highlighted the moment he exits without it.
   const trackerHighlight = useTransform(
-    scrollYProgress,
+    progress,
     [0.15, 0.20, 0.32, 0.42],
     [0, 1, 1, 0.3],
     { clamp: true }
@@ -80,7 +99,7 @@ export function StoryScrollytelling() {
 
   // Door station green light — ramps up at scene 3
   const stationGlow = useTransform(
-    scrollYProgress,
+    progress,
     [0.30, 0.36, 0.62, 0.70],
     [0, 1, 1, 0.55],
     { clamp: true }
@@ -88,24 +107,24 @@ export function StoryScrollytelling() {
 
   // Sound waves — scene 4
   const waveOpacity = useTransform(
-    scrollYProgress,
+    progress,
     [0.48, 0.54, 0.64, 0.68],
     [0, 1, 1, 0],
     { clamp: true }
   );
-  const waveScale = useTransform(scrollYProgress, [0.5, 0.66], [0.6, 1.4], {
+  const waveScale = useTransform(progress, [0.5, 0.66], [0.6, 1.4], {
     clamp: true,
   });
 
   // Phone notification — scene 5 (the ONE terracotta flash moment)
   const notifOpacity = useTransform(
-    scrollYProgress,
+    progress,
     [0.64, 0.70, 0.80, 0.84],
     [0, 1, 1, 0.7],
     { clamp: true }
   );
   const flashOpacity = useTransform(
-    scrollYProgress,
+    progress,
     [0.66, 0.70, 0.74],
     [0, 0.22, 0],
     { clamp: true }
@@ -113,34 +132,18 @@ export function StoryScrollytelling() {
 
   // Calm overlay — scene 6
   const calmOpacity = useTransform(
-    scrollYProgress,
+    progress,
     [0.82, 0.88, 1],
     [0, 1, 1],
     { clamp: true }
   );
 
-  // Replay button visible near end
-  const replayOpacity = useTransform(
-    scrollYProgress,
-    [0.9, 0.97, 1],
-    [0, 1, 1],
-    { clamp: true }
-  );
-
-  function replay() {
-    const el = ref.current;
-    if (!el) return;
-    window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
-  }
-
   return (
     <section
       id="story"
       ref={ref}
-      className="relative bg-sand"
-      style={{ height: "720vh" }}
+      className="relative flex h-screen min-h-[640px] flex-col overflow-hidden bg-sand pt-16"
     >
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         {/* Scene illustration */}
         <div className="relative flex-1">
           <div
@@ -326,14 +329,14 @@ export function StoryScrollytelling() {
         </div>
 
         {/* Caption + controls */}
-        <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-14 text-center">
-          {/* Caption stack */}
-          <div className="relative h-20 sm:h-16">
+        <div className="relative z-20 mx-auto w-full max-w-3xl px-5 pb-10 text-center sm:pb-14">
+          {/* Caption stack — bigger text on a soft warm panel */}
+          <div className="relative mx-auto flex min-h-[4.5rem] items-center justify-center rounded-2xl border border-divider/60 bg-warmwhite/85 px-6 py-4 shadow-[0_14px_40px_-22px_rgba(28,62,58,0.45)] backdrop-blur-md sm:min-h-[5rem] sm:px-8 sm:py-5">
             {SCENES.map((text, i) => (
               <motion.p
                 key={i}
                 style={{ opacity: caps[i] }}
-                className="absolute inset-0 text-balance text-[1.15rem] font-medium leading-relaxed text-teal sm:text-[1.35rem]"
+                className="absolute inset-0 flex items-center justify-center px-6 text-balance text-[1.35rem] font-semibold leading-snug text-teal sm:px-8 sm:text-[1.7rem]"
               >
                 {text}
               </motion.p>
@@ -342,17 +345,14 @@ export function StoryScrollytelling() {
 
           {/* Scene dots */}
           <div className="mt-5 flex items-center justify-center gap-2.5">
-            <SceneDots progress={scrollYProgress} active={activeScene} />
+            <SceneDots progress={progress} active={activeScene} />
           </div>
 
-          {/* Replay control — appears near the end */}
-          <motion.div
-            style={{ opacity: replayOpacity }}
-            className="mt-6 flex justify-center"
-          >
+          {/* Replay control — always available so the story can be rewatched */}
+          <div className="mt-5 flex justify-center">
             <button
               onClick={replay}
-              className="inline-flex items-center gap-2 rounded-full border border-divider bg-warmwhite/80 px-4 py-2 text-[0.88rem] font-medium text-teal backdrop-blur transition-all hover:-translate-y-0.5 hover:border-teal-light/40"
+              className="inline-flex items-center gap-2 rounded-full border border-divider bg-warmwhite/90 px-4 py-2 text-[0.9rem] font-semibold text-teal backdrop-blur transition-all hover:-translate-y-0.5 hover:border-teal-light/40 hover:bg-warmwhite"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
                 <path
@@ -365,9 +365,8 @@ export function StoryScrollytelling() {
               </svg>
               دوباره ببین
             </button>
-          </motion.div>
+          </div>
         </div>
-      </div>
     </section>
   );
 }
