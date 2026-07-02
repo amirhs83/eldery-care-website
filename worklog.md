@@ -104,3 +104,27 @@ Stage Summary:
 - Replay verified: ۶/۶ → click → ۲s: ۱/۶ → ۷s: ۲/۶ → ۱۲s: ۳/۶ (clean restart).
 - VLM confirmed caption: "sits on a visible background panel/card… light-colored (off-white/cream) box behind the text… large and highly readable… bold".
 - Scrolling past the story still flows naturally into the Product Showcase section.
+
+---
+Task ID: 4
+Agent: main (Z.ai Code)
+Task: Double the story speed; add animation to scenes 2/3/4 (esp. scene 2 must visually show the tracker was left behind).
+
+Work Log:
+- DURATION 25 → 12.5s (2× faster, ~2.1s/scene). Sped up father's walking-bob 0.7s → 0.45s to match.
+- Scene 2 (ردیاب جا مانده) — added three simultaneous animations so it clearly reads "left behind":
+  • Tracker body now vibrates (motion.g x: [0,1.5,-1.5,1.5,0], 0.45s loop).
+  • Radiating alert rays (3 short terracotta lines above/around the tracker, opacity pulse 0.9s loop).
+  • Bouncing exclamation badge (!) — terracotta circle with white "!" stem+dot, y: [0,-5,0] 0.75s loop — above the tracker.
+  • All gated by new `alert2Opacity` = useSegOpacity(0.17–0.34).
+- Scene 3 (ایستگاه متوجه می‌شود) — added radar-style detection pings: 3 green rings expanding r:8→54, opacity 0.85→0, staggered 0.47s, 1.4s loop, gated by new `detect3Opacity` (0.33–0.50). Plus the existing green status light.
+- Scene 4 (یادآوری صوتی) — replaced the old single-scale wave sweep with continuous looping sound rings: 4 green rings expanding r:8→48 with opacity [0.95,0.45,0] + strokeWidth [3,1], staggered 0.4s, 1.6s loop. Plus a speaker pulse (status light scales 1→1.45→1, 0.8s loop) so the device visibly "speaks".
+- Removed now-unused `waveScale` motion value.
+
+Stage Summary:
+- Lint clean; dev server GET / 200, no errors.
+- Agent-browser verified the 2× timeline: replay → ۳s: scene ۲ → ۵.۲s: scene ۳ → ۷.۳s: scene ۴ (whole story done ~12.5s).
+- VLM (glm-4.6v) confirmed all three new animations from screenshots:
+  • Scene 2: "orange/terracotta exclamation mark badge (!) visible above the tracker… short orange alert rays/lines radiating around the tracker… highlighted/glowing".
+  • Scene 3: "expanding green circles/rings (radar-style pings) emanating from the door-station device… green light glowing".
+  • Scene 4: "faint green circular rings expanding outward from the small wall-mounted device… pulsing green dot/light" (made bolder after first capture).

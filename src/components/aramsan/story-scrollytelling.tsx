@@ -20,8 +20,8 @@ const SCENES = [
   "همه با آرامش به زندگی ادامه می‌دهند.",
 ];
 
-// Total auto-play duration (~4.2s per scene — not too fast, not too slow)
-const DURATION = 25;
+// Total auto-play duration (~2.1s per scene — 2× the previous speed)
+const DURATION = 12.5;
 
 /** Map a segment of progress to a fade-in/hold/fade-out opacity. */
 function useSegOpacity(
@@ -96,6 +96,8 @@ export function StoryScrollytelling() {
     [0, 1, 1, 0.3],
     { clamp: true }
   );
+  // Scene-2 "forgotten tracker" alert (badge + rays) — visible only in scene 2
+  const alert2Opacity = useSegOpacity(progress, 0.17, 0.34, 0.03);
 
   // Door station green light — ramps up at scene 3
   const stationGlow = useTransform(
@@ -104,17 +106,16 @@ export function StoryScrollytelling() {
     [0, 1, 1, 0.55],
     { clamp: true }
   );
+  // Scene-3 detection pings (radar-style) — visible only in scene 3
+  const detect3Opacity = useSegOpacity(progress, 0.33, 0.50, 0.03);
 
-  // Sound waves — scene 4
+  // Sound waves — scene 4 (continuous loop while visible)
   const waveOpacity = useTransform(
     progress,
     [0.48, 0.54, 0.64, 0.68],
     [0, 1, 1, 0],
     { clamp: true }
   );
-  const waveScale = useTransform(progress, [0.5, 0.66], [0.6, 1.4], {
-    clamp: true,
-  });
 
   // Phone notification — scene 5 (the ONE terracotta flash moment)
   const notifOpacity = useTransform(
@@ -253,11 +254,39 @@ export function StoryScrollytelling() {
                 <motion.ellipse cx="210" cy="306" rx="34" ry="18" fill="#c97845" style={{ opacity: trackerHighlight }} filter="url(#softblur)" />
                 <motion.ellipse cx="210" cy="306" rx="24" ry="14" fill="none" stroke="#c97845" strokeWidth="2" style={{ opacity: trackerHighlight }} />
 
-                {/* the tracker, sitting in the cradle */}
-                <ellipse cx="210" cy="306" rx="18" ry="10.5" fill="#1c3e3a" />
-                <ellipse cx="210" cy="303" rx="18" ry="10.5" fill="#2f5650" />
-                <circle cx="210" cy="303" r="4.5" fill="#c97845" />
-                <circle cx="210" cy="303" r="2" fill="#de9862" />
+                {/* the tracker, sitting in the cradle — vibrates in scene 2 to signal it was left behind */}
+                <motion.g
+                  animate={{ x: [0, 1.5, -1.5, 1.5, 0] }}
+                  transition={{ duration: 0.45, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ellipse cx="210" cy="306" rx="18" ry="10.5" fill="#1c3e3a" />
+                  <ellipse cx="210" cy="303" rx="18" ry="10.5" fill="#2f5650" />
+                  <circle cx="210" cy="303" r="4.5" fill="#c97845" />
+                  <circle cx="210" cy="303" r="2" fill="#de9862" />
+                </motion.g>
+
+                {/* scene-2 alert: radiating rays + bouncing exclamation badge above the tracker */}
+                <motion.g style={{ opacity: alert2Opacity }}>
+                  {/* radiating alert rays */}
+                  <motion.g
+                    animate={{ opacity: [0.25, 1, 0.25] }}
+                    transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <line x1="210" y1="288" x2="210" y2="278" stroke="#c97845" strokeWidth="2.6" strokeLinecap="round" />
+                    <line x1="188" y1="294" x2="180" y2="288" stroke="#c97845" strokeWidth="2.6" strokeLinecap="round" />
+                    <line x1="232" y1="294" x2="240" y2="288" stroke="#c97845" strokeWidth="2.6" strokeLinecap="round" />
+                  </motion.g>
+                  {/* bouncing exclamation badge */}
+                  <motion.g
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 0.75, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <circle cx="210" cy="262" r="12" fill="#c97845" />
+                    <circle cx="210" cy="262" r="12" fill="none" stroke="#fffdf8" strokeWidth="1.5" opacity="0.5" />
+                    <line x1="210" y1="257" x2="210" y2="263" stroke="#fffdf8" strokeWidth="2.8" strokeLinecap="round" />
+                    <circle cx="210" cy="267" r="1.4" fill="#fffdf8" />
+                  </motion.g>
+                </motion.g>
 
                 {/* charging LED (green, gentle ambient pulse) */}
                 <motion.circle
@@ -275,18 +304,49 @@ export function StoryScrollytelling() {
                 <path d="M210 312 Q210 292 215 278 L215 210" stroke="#8a7a61" strokeWidth="1.5" fill="none" opacity="0.35" />
               </g>
 
-              {/* ---------- SOUND WAVES from door station (scene 4) ---------- */}
+              {/* ---------- SOUND WAVES from door station (scene 4) — continuous looping rings + speaker pulse ---------- */}
               <motion.g style={{ opacity: waveOpacity }}>
-                <motion.circle cx="47" cy="272" r="16" stroke="#7c9473" strokeWidth="2" style={{ scale: waveScale, transformOrigin: "47px 272px" }} />
-                <motion.circle cx="47" cy="272" r="26" stroke="#7c9473" strokeWidth="1.5" style={{ scale: waveScale, opacity: 0.6, transformOrigin: "47px 272px" }} />
-                <motion.circle cx="47" cy="272" r="36" stroke="#7c9473" strokeWidth="1" style={{ scale: waveScale, opacity: 0.35, transformOrigin: "47px 272px" }} />
+                {[0, 1, 2, 3].map((i) => (
+                  <motion.circle
+                    key={i}
+                    cx="47"
+                    cy="272"
+                    fill="none"
+                    stroke="#7c9473"
+                    animate={{ r: [8, 48], opacity: [0.95, 0.45, 0], strokeWidth: [3, 1] }}
+                    transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.4, ease: "easeOut" }}
+                  />
+                ))}
+                {/* speaker pulse — the status light itself pulses as it "speaks" */}
+                <motion.circle
+                  cx="47" cy="272" r="5" fill="#7c9473"
+                  animate={{ scale: [1, 1.45, 1], opacity: [1, 0.55, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ transformOrigin: "47px 272px" }}
+                />
+              </motion.g>
+
+              {/* ---------- DETECTION PINGS from door station (scene 3) — radar-style ---------- */}
+              <motion.g style={{ opacity: detect3Opacity }}>
+                {[0, 1, 2].map((i) => (
+                  <motion.circle
+                    key={i}
+                    cx="47"
+                    cy="272"
+                    fill="none"
+                    stroke="#7c9473"
+                    strokeWidth="2"
+                    animate={{ r: [8, 54], opacity: [0.85, 0] }}
+                    transition={{ duration: 1.4, repeat: Infinity, delay: i * 0.47, ease: "easeOut" }}
+                  />
+                ))}
               </motion.g>
 
               {/* ---------- THE FATHER (detailed elderly figure, walks + exits) ---------- */}
               <motion.g
                 style={{ x: figureX, opacity: figureOpacity }}
                 animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 0.7, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 0.45, repeat: Infinity, ease: "easeInOut" }}
               >
                 <g transform="translate(0 395)">
                   <ElderFigure />
