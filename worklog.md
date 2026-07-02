@@ -169,3 +169,21 @@ Stage Summary:
 - VLM (glm-4.6v) verified from raw image files: hero has "thin black cord/necklace strap attached… looping up like a necklace"; all 4 use-case images correctly show device on necklace / belt / cane / child backpack with warm beige background.
 - VLM verified from rendered-page screenshots: hero shows the cord; showcase has 4 cards each with a real product photo matching necklace/belt/cane/bag.
 - Kept hero-tracker-original.png as a backup; removed the gen script.
+
+---
+Task ID: 7
+Agent: main (Z.ai Code)
+Task: Fix the belt/cane/bag use-case images — tracker was too large and compositions were off. New specs: cane = small tracker fastened with a slim band on a vertical wooden cane; bag = small tracker clipped onto a bag's top handle; belt = small tracker on a brown leather belt worn around a person's waist.
+
+Work Log:
+- Wrote a one-off SDK script (scripts/fix-use-images.ts, since deleted) using images.generations.edit against the original hero image as reference, with explicit "keep it SMALL, about the size of a coin, not large" instructions plus per-use composition guidance.
+- Regenerated 3 images:
+  • use-cane.png — wooden cane vertical with curved handle, small tracker on slim band on the upper shaft.
+  • use-bag.png — fabric bag with visible top handle, small tracker clipped onto the handle.
+  • use-belt.png — person's waist/hip with a buckled brown leather belt, small tracker mounted on the belt (no face).
+- use-necklace.png and hero-tracker.png left unchanged (already correct).
+
+Stage Summary:
+- VLM verified each raw image: cane = "small (coin-sized accent)… slim strap/band… wooden cane vertical with handle at top"; bag = "small (coin-sized accent) clipped onto the bag handle… fabric bag with visible top handle"; belt = "small (coin-sized accent) mounted on the belt… person's waist/hip area wearing a brown leather belt… buckled".
+- VLM verified rendered showcase: all 4 cards show the tracker attached to the correct item (bag handle, cane, belt around waist, necklace cord) and all look small/subtle.
+- Lint clean; dev server GET / 200, no errors.
