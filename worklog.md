@@ -41,3 +41,41 @@ Stage Summary:
   • Mobile: no horizontal overflow; sticky CTA bar appears after hero.
   • Footer present at bottom; sticky-footer layout intact.
 - Self-audit checklist (no AI-template tells): Vazirmatn only, no purple/blue gradients, no two consecutive same grid, varied card radii, terracotta <5% viewport, specific hero headline, mid-scroll + sticky mobile CTAs, true scroll-scrubbed story.
+
+---
+Task ID: 2
+Agent: main (Z.ai Code)
+Task: Improve the story (scrollytelling) section — (1) tracker must sit on a charging station next to the door (plot-critical), (2) the elderly father figure must look clearly human, (3) general polish.
+
+Work Log:
+- Rewrote src/components/aramsan/story-scrollytelling.tsx scene SVG entirely:
+  - Removed the old "table with tracker on the right" — tracker no longer sits on a table.
+  - Added a wall-mounted CHARGING DOCK just to the right of the door (x≈210): mounting plate, cradle with back lip, interior shadow, the tracker pebble sitting in the cradle, a green charging LED that gently pulses (framer animate), and a subtle power cable running up the wall.
+  - Tracker highlight (terracotta glow + ring) now targets the dock location and ramps at scroll 0.15→0.20 (right as the father passes the dock and exits without it).
+  - Updated scene-2 caption to "ردیاب روی ایستگاه شارژ کنار در جا مانده است." to match the new visual.
+- Rebuilt the father figure as a detailed ElderFigure component (clearly human, clearly elderly):
+  - Head with gray receding hair, ear, glasses (two lenses + bridge + temple), nose, mustache, short beard.
+  - Teal coat (hunched-forward silhouette) with center seam + hem shadow.
+  - Two distinct legs with shoes (walking pose, one stepping forward).
+  - Front arm (sleeve) reaching to a cane; back arm swinging.
+  - Cane with curved handle in the front hand, tip on the ground ahead.
+  - Ground shadow.
+  - Figure is ~130px tall so detail (glasses/cane/hair) reads at display scale.
+  - Added a subtle vertical "walking bob" (±3px, 0.7s) via framer animate so he walks instead of sliding.
+  - Walk path adjusted: x 560→400→250(past dock)→140(door)→30(exit); fades out by scene 3.
+- Scene polish:
+  - Added a window on the right wall with warm dusk-light gradient + mullions + sheer curtain hint.
+  - Added a doormat at the threshold and a warm lamp-glow radial in the interior.
+  - Door now reads as an open doorway (frame + dark exterior with faint teal porch-light radial).
+  - Door station device refined (speaker grille lines, brand dot, green status light with blur glow).
+  - Added a third, larger/fainter sound-wave ring for a richer scene-4 moment.
+  - Calm checkmark (scene 6) repositioned to center as a resolution mark.
+- Kept all scroll mechanics (6 scenes, 720vh, useSegOpacity, SceneDots/SceneDot/ProgressNumber, replay button) intact; only adjusted a few motion-value timings to align with the new figure walk + tracker-highlight moments.
+
+Stage Summary:
+- Lint clean; dev server GET / 200, no runtime errors.
+- VLM (glm-4.6v) verified all three fixes from screenshots:
+  • Scene 1: "elderly person with head (white hair), glasses, body (teal shirt, dark pants), arms, legs… clearly depicts an elderly individual" + "charging station/dock with a small device (tracker) next to the door".
+  • Scene 2: tracker "highlighted with a glow… orange" + "charging dock is next to the door (right of it)".
+  • Scene 5: phone notification with terracotta circle + checkmark visible; father figure correctly absent (exited).
+- Scene indicators correctly advance with scroll (۱/۶ → ۲/۶ → ۴/۶ → ۵/۶).
