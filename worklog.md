@@ -187,3 +187,17 @@ Stage Summary:
 - VLM verified each raw image: cane = "small (coin-sized accent)… slim strap/band… wooden cane vertical with handle at top"; bag = "small (coin-sized accent) clipped onto the bag handle… fabric bag with visible top handle"; belt = "small (coin-sized accent) mounted on the belt… person's waist/hip area wearing a brown leather belt… buckled".
 - VLM verified rendered showcase: all 4 cards show the tracker attached to the correct item (bag handle, cane, belt around waist, necklace cord) and all look small/subtle.
 - Lint clean; dev server GET / 200, no errors.
+
+---
+Task ID: 8
+Agent: main (Z.ai Code)
+Task: Fix the bag image — should be a school backpack worn on the shoulder, tracker clipped onto the shoulder strap, sized consistently with the other use-case images.
+
+Work Log:
+- Regenerated only public/products/use-bag.png via images.generations.edit against the original hero reference. Prompt specified: school backpack with two shoulder straps (front/side view, one strap clearly visible), small coin-sized tracker clipped onto the shoulder strap, same warm ivory background + lamplight glow, no people.
+- Other 3 images (necklace, belt, cane) unchanged.
+
+Stage Summary:
+- VLM verified raw image: "school backpack with visible shoulder straps… small teal pebble tracker device clipped onto one of the shoulder straps… SMALL (coin-sized accent, similar in proportion to a tracker on a belt or cane)".
+- VLM verified rendered showcase: all 4 cards show tracker attached to correct item (bag strap, cane, belt, necklace cord) and tracker size is consistent across all 4 (none oversized).
+- Lint clean; dev server GET / 200, no errors.
