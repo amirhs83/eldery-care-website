@@ -128,3 +128,21 @@ Stage Summary:
   • Scene 2: "orange/terracotta exclamation mark badge (!) visible above the tracker… short orange alert rays/lines radiating around the tracker… highlighted/glowing".
   • Scene 3: "expanding green circles/rings (radar-style pings) emanating from the door-station device… green light glowing".
   • Scene 4: "faint green circular rings expanding outward from the small wall-mounted device… pulsing green dot/light" (made bolder after first capture).
+
+---
+Task ID: 5
+Agent: main (Z.ai Code)
+Task: Remove the interactive "شبیه‌سازی زنده" widget from the Smart Door Station section; keep only the description + features.
+
+Work Log:
+- Rewrote src/components/aramsan/door-station.tsx:
+  - Removed all simulation state/logic (Step type, useState step/playing, simulate(), reset(), StepBadge).
+  - Removed the simulation card: stage label, animated device body, sound waves, phone notification, confirm button, simulate/replay controls, and the "برای دیدن جریان کامل..." caption.
+  - Removed unused imports (AnimatePresence, useState, useCallback, toFa).
+  - Kept the full text side unchanged: badge "ایستگاه درب هوشمند", headline "خروج بدون ردیاب؟ دیگر نه.", paragraph, and the 4-item feature checklist (تشخیص خروج بدون ردیاب / یادآوری صوتی ملایم / هشدار برای خانواده / دکمه تأیید خروج برای سایر اعضای خانواده).
+  - Replaced the simulation card with the door-station product image (/products/door-station.png) floating with a soft green ambient glow behind it — so the section's right column isn't empty.
+
+Stage Summary:
+- Lint clean; dev server GET / 200, no errors.
+- Agent-browser confirmed: 0 buttons in #door section, image products/door-station.png present, text content intact.
+- VLM confirmed: no simulate button / interactive widget; section is descriptive text + static image only.
