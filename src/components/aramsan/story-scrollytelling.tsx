@@ -145,6 +145,23 @@ export function StoryScrollytelling() {
       ref={ref}
       className="relative flex h-screen min-h-[640px] flex-col overflow-hidden bg-sand pt-16"
     >
+        {/* Heading above the animated scenario */}
+        <div className="relative z-20 mx-auto w-full max-w-3xl px-5 pt-2 text-center sm:pt-4">
+          <span className="inline-block text-[0.78rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
+            آرامسن در یک نگاه
+          </span>
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mt-2 text-teal font-extrabold leading-[1.15] tracking-tight"
+            style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.4rem)", fontFamily: "var(--font-vazirmatn)" }}
+          >
+            دیگر نگران خروج بدون ردیاب نباشید.
+          </motion.h2>
+        </div>
+
         {/* Scene illustration */}
         <div className="relative flex-1">
           <div
