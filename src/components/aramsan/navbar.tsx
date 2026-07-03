@@ -51,9 +51,6 @@ export function Navbar() {
             <a href="#features" className="transition-colors hover:text-teal">
               امکانات
             </a>
-            <a href="#door" className="transition-colors hover:text-teal">
-              ایستگاه درب
-            </a>
             <a href="#blog" className="transition-colors hover:text-teal">
               وبلاگ
             </a>

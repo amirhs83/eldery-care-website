@@ -3,7 +3,6 @@ import { Hero } from "@/components/aramsan/hero";
 import { StoryScrollytelling } from "@/components/aramsan/story-scrollytelling";
 import { ProductShowcase } from "@/components/aramsan/product-showcase";
 import { Features } from "@/components/aramsan/features";
-import { DoorStation } from "@/components/aramsan/door-station";
 import { AiSection } from "@/components/aramsan/ai-section";
 import { AppPreview } from "@/components/aramsan/app-preview";
 import { Statistics } from "@/components/aramsan/statistics";
@@ -25,7 +24,6 @@ export default function Home() {
         <StoryScrollytelling />
         <ProductShowcase />
         <Features />
-        <DoorStation />
         <AiSection />
         <AppPreview />
         <Statistics />

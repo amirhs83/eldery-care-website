@@ -148,7 +148,7 @@ export function StoryScrollytelling() {
         {/* Heading above the animated scenario */}
         <div className="relative z-20 mx-auto w-full max-w-3xl px-5 pt-2 text-center sm:pt-4">
           <span className="inline-block text-[0.78rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-            آرامسن در یک نگاه
+            ایستگاه درب هوشمند
           </span>
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
