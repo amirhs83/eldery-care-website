@@ -15,6 +15,7 @@ model WaitlistEntry {
   fullName    String
   phone       String
   email       String?
+  feedback    String?
   referralCode String  @unique
   referredBy  String?
   createdAt   DateTime @default(now())

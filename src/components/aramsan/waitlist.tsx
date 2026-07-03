@@ -14,6 +14,7 @@ export function Waitlist() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [feedback, setFeedback] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [error, setError] = useState("");
   const [result, setResult] = useState<Result | null>(null);
@@ -39,6 +40,7 @@ export function Waitlist() {
           fullName: fullName.trim(),
           phone: phone.trim(),
           email: email.trim(),
+          feedback: feedback.trim(),
           referredBy,
         }),
       });
@@ -131,6 +133,13 @@ export function Waitlist() {
               type="email"
               dir="ltr"
             />
+            <TextArea
+              id="wl-feedback"
+              label="پیشنهاد، انتقاد یا نکته‌ای که دوست دارید (اختیاری)"
+              value={feedback}
+              onChange={setFeedback}
+              placeholder="مثلاً: برای چه شرایطی بیشترین نیاز به آرامسن دارید؟"
+            />
           </div>
 
           <button
@@ -194,6 +203,37 @@ function Field({
         placeholder={placeholder}
         required={required}
         className="w-full rounded-xl border border-divider bg-ivory px-4 py-3 text-[1rem] text-ink outline-none transition-colors placeholder:text-muted-ink/60 focus:border-teal-light focus:ring-2 focus:ring-teal-light/15"
+      />
+    </div>
+  );
+}
+
+function TextArea({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-[0.85rem] font-semibold text-teal">
+        {label}
+      </label>
+      <textarea
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        rows={3}
+        maxLength={1000}
+        className="w-full resize-y rounded-xl border border-divider bg-ivory px-4 py-3 text-[1rem] leading-relaxed text-ink outline-none transition-colors placeholder:text-muted-ink/60 focus:border-teal-light focus:ring-2 focus:ring-teal-light/15"
       />
     </div>
   );

@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/aramsan/navbar";
 import { Hero } from "@/components/aramsan/hero";
 import { StoryScrollytelling } from "@/components/aramsan/story-scrollytelling";
-import { MidScrollCta } from "@/components/aramsan/mid-scroll-cta";
 import { ProductShowcase } from "@/components/aramsan/product-showcase";
 import { Features } from "@/components/aramsan/features";
 import { DoorStation } from "@/components/aramsan/door-station";
@@ -22,7 +21,6 @@ export default function Home() {
       <main className="relative flex-1">
         <Hero />
         <StoryScrollytelling />
-        <MidScrollCta />
         <ProductShowcase />
         <Features />
         <DoorStation />

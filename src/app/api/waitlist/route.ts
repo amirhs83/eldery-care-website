@@ -32,6 +32,8 @@ export async function POST(req: NextRequest) {
       String(body.email || "").trim() === ""
         ? null
         : String(body.email).trim().toLowerCase();
+    const feedbackRaw = String(body.feedback || "").trim();
+    const feedback = feedbackRaw === "" ? null : feedbackRaw.slice(0, 1000);
     const referredBy = String(body.referredBy || "").trim() || null;
 
     if (fullName.length < 3) {
@@ -78,6 +80,7 @@ export async function POST(req: NextRequest) {
         fullName,
         phone,
         email,
+        feedback,
         referralCode,
         referredBy: referrerValid ? referralCode : null,
       },
