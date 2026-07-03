@@ -9,6 +9,7 @@ import { AppPreview } from "@/components/aramsan/app-preview";
 import { Statistics } from "@/components/aramsan/statistics";
 import { Comparison } from "@/components/aramsan/comparison";
 import { WallOfLove } from "@/components/aramsan/wall-of-love";
+import { Blog } from "@/components/aramsan/blog";
 import { Waitlist } from "@/components/aramsan/waitlist";
 import { Faq } from "@/components/aramsan/faq";
 import { StickyMobileCta } from "@/components/aramsan/sticky-mobile-cta";
@@ -29,6 +30,7 @@ export default function Home() {
         <Statistics />
         <Comparison />
         <WallOfLove />
+        <Blog />
         <Waitlist />
         <Faq />
       </main>

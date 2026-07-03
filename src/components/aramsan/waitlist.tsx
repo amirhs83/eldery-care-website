@@ -13,7 +13,6 @@ type Result = {
 export function Waitlist() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
   const [feedback, setFeedback] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [error, setError] = useState("");
@@ -39,7 +38,6 @@ export function Waitlist() {
         body: JSON.stringify({
           fullName: fullName.trim(),
           phone: phone.trim(),
-          email: email.trim(),
           feedback: feedback.trim(),
           referredBy,
         }),
@@ -123,15 +121,6 @@ export function Waitlist() {
               type="tel"
               dir="ltr"
               required
-            />
-            <Field
-              id="wl-email"
-              label="ایمیل (اختیاری)"
-              value={email}
-              onChange={setEmail}
-              placeholder="you@email.com"
-              type="email"
-              dir="ltr"
             />
             <TextArea
               id="wl-feedback"

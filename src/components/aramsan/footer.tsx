@@ -40,7 +40,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-[0.95rem]">
               {[
                 { l: "درباره ما", href: "#" },
-                { l: "وبلاگ", href: "#" },
+                { l: "وبلاگ", href: "#blog" },
                 { l: "سوالات متداول", href: "#faq" },
                 { l: "تماس با ما", href: "#" },
               ].map((i) => (
