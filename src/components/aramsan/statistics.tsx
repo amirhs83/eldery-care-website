@@ -55,7 +55,7 @@ export function Statistics() {
               />
             </div>
             <motion.img
-              src="/products/tracker-on-charger.png"
+              src="/products/custom-device.png"
               alt="ردیاب هوشمند آرامسن روی ایستگاه شارژ کنار در با نور سبز شارژ"
               className="relative z-10 w-full rounded-[1.75rem] object-cover shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]"
               animate={{ y: [0, -8, 0] }}

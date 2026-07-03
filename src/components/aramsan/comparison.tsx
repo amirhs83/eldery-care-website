@@ -97,7 +97,7 @@ export function Comparison() {
           </div>
         </div>
         <p className="mt-4 text-center text-[0.8rem] text-muted-ink">
-          بر اساس مدل‌های رایج بازار تا {toFa(1403)}.
+          بر اساس مدل‌های رایج بازار تا {toFa(1405)}.
         </p>
       </div>
     </section>
