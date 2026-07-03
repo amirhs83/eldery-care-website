@@ -201,3 +201,32 @@ Stage Summary:
 - VLM verified raw image: "school backpack with visible shoulder straps… small teal pebble tracker device clipped onto one of the shoulder straps… SMALL (coin-sized accent, similar in proportion to a tracker on a belt or cane)".
 - VLM verified rendered showcase: all 4 cards show tracker attached to correct item (bag strap, cane, belt, necklace cord) and tracker size is consistent across all 4 (none oversized).
 - Lint clean; dev server GET / 200, no errors.
+
+---
+Task ID: 2
+Agent: main (Z.ai Code) + full-stack-developer subagent (partial, completed by main)
+Task: Fix blog share button; build complete admin panel (waitlist management + SEO-driven blog CMS) as a hash overlay.
+
+Work Log:
+- Fixed share button in blog-overlay.tsx: replaced `<a href="#">` with a proper `<button>` + ShareButton component that tries navigator.share → clipboard copy → error fallback, with visual feedback ("لینک کپی شد ✓"). Verified working in browser.
+- Subagent created the full admin panel infrastructure before disconnecting:
+  - Prisma schema: added `archived Boolean` to WaitlistEntry + full `BlogPost` model (title, slug, excerpt, content markdown, category, tags, status, publishedAt, coverImage, coverAlt, readTime, featured, + SEO fields: metaTitle, metaDescription, canonical, ogImage, focusKeyword, schemaType). db:push applied.
+  - Seeded 4 blog posts into DB from the old static blog-data.ts (all published, 1 featured).
+  - Public API: `/api/blog` (GET list / single by slug), `/api/sitemap` (XML sitemap from published posts).
+  - Admin APIs under `/api/admin/*`: login, logout, session, waitlist (GET with search/filter/sort, PATCH archive, DELETE, export CSV), blog CRUD (list, get by id, create, update, delete).
+  - `src/lib/admin-auth.ts` (token-based auth via cookie/header, ADMIN_TOKEN = "aramsan-admin-2026").
+  - `src/lib/seo-score.ts` (computeSeoScore with 10 checks → 0-100 score).
+  - `admin-overlay.tsx` (full hash-routed overlay: #admin, #admin/waitlist, #admin/blog, #admin/blog/new, #admin/blog/<id>/edit). Auth gate with login screen. Waitlist table with search/date-filter/sort/CSV-export/archive/delete. Blog CMS with list + editor (markdown with live preview, SEO panel with live score gauge + 10 checks, all SEO fields with char counters, schema type select, status draft/published, featured toggle).
+  - Refactored blog-overlay.tsx to be DB-backed (fetches from /api/blog), with dynamic SEO meta tags (document.title, meta description, OG tags, canonical) per article, Markdown rendering via react-markdown, ShareButton preserved.
+  - Added AdminOverlay + BlogOverlay to page.tsx.
+- Main agent fixed 3 lint errors (setState-in-effect in blog-overlay: replaced with useMemo for related posts + async setState; in admin-overlay: eslint-disable for legitimate async fetch pattern). Regenerated Prisma client, restarted dev server via sandbox dev.sh.
+
+Stage Summary:
+- Lint clean; dev server running, GET / 200, no errors.
+- Agent-browser verified:
+  • Blog overlay: opens from navbar "وبلاگ" link, shows 4 posts from DB, article view renders markdown content + related posts + share button ("لینک کپی شد ✓").
+  • Admin overlay: #admin → login screen → password "aramsan-admin-2026" → dashboard.
+  • Waitlist mgmt: shows 2 entries (سارا رضایی, مریم احمدی) with name/phone/email/feedback/date/status, search input, date range, sort select, archived toggle, CSV export, archive/delete buttons. Count: "تعداد: ۲".
+  • Blog CMS: list of 4 posts with status badges, "مقاله‌ی جدید" button, edit/delete. Editor opens with all fields + SEO panel showing "۳۰ / ۱۰۰" score with "۳ از ۱۰ بررسی موفق" + 10 check items, live markdown preview, char counters on metaTitle/metaDescription, schema type select (BlogPosting/Article).
+  • APIs: /api/blog (200, 4 posts), /api/admin/login (200 with correct password), /api/admin/session (authed:false without token), /api/sitemap (200 XML).
+- Access: navigate to the site, set URL hash to #admin, password = "aramsan-admin-2026".

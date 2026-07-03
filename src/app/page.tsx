@@ -14,6 +14,7 @@ import { Faq } from "@/components/aramsan/faq";
 import { StickyMobileCta } from "@/components/aramsan/sticky-mobile-cta";
 import { Footer } from "@/components/aramsan/footer";
 import { BlogOverlay } from "@/components/aramsan/blog-overlay";
+import { AdminOverlay } from "@/components/aramsan/admin-overlay";
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
       <Footer />
       <StickyMobileCta />
       <BlogOverlay />
+      <AdminOverlay />
     </div>
   );
 }
