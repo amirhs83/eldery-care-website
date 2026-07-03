@@ -84,8 +84,8 @@ export function Hero() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
             className="mt-6 max-w-xl text-[1.05rem] leading-[1.9] text-muted-ink sm:text-[1.15rem]"
           >
-            ردیاب هوشمند و ایستگاه درب اختصاصی برای مراقبت از سالمندان، کودکان و
-            عزیزان شما.
+            ردیاب هوشمند با هوش مصنوعی و ایستگاه درب اختصاصی برای مراقبت از
+            سالمندان، کودکان و عزیزان شما.
           </motion.p>
 
           <motion.div
@@ -185,7 +185,7 @@ export function Hero() {
             >
               <img
                 src="/products/hero-tracker.png"
-                alt="ردیاب هوشمند آرامسن — دستگاهی ظریف با روکش سرامیک فیروزه‌ای تیره و حلقهaccent تراکوتا"
+                alt="ردیاب هوشمند آرامسن مجهز به هوش مصنوعی — دستگاهی ظریف با روکش سرامیک فیروزه‌ای تیره، حلقه‌ی تراکوتا و طناب گردنبند مشکی"
                 className="h-full w-full rounded-[2rem] object-cover"
                 loading="eager"
               />
@@ -196,23 +196,31 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="absolute -bottom-2 right-2 z-20 rounded-2xl border border-divider bg-warmwhite/90 px-4 py-2.5 shadow-[0_12px_30px_-12px_rgba(28,62,58,0.25)] backdrop-blur sm:right-4"
+              className="absolute -bottom-2 right-2 z-20 max-w-[15rem] rounded-2xl border border-divider bg-warmwhite/90 px-4 py-2.5 shadow-[0_12px_30px_-12px_rgba(28,62,58,0.25)] backdrop-blur sm:right-4"
             >
               <div className="flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-teal/10 text-teal">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal">
+                  {/* AI / brain-spark icon */}
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
                     <path
-                      d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+                      d="M12 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 9 17a3 3 0 0 0 6 0 3 3 0 0 0 2-5.8A3 3 0 0 0 15 6a3 3 0 0 0-3-3z"
                       stroke="currentColor"
-                      strokeWidth="1.6"
+                      strokeWidth="1.5"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M12 8.5v7M9.5 11l2.5 1.4L14.5 11"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
                 <div className="leading-tight">
-                  <div className="text-[0.72rem] text-muted-ink">شارژدهی</div>
-                  <div className="text-[0.95rem] font-bold text-teal nums-fa">
-                    تا ۳ روز
+                  <div className="text-[0.72rem] text-muted-ink">هوش مصنوعی</div>
+                  <div className="text-[0.88rem] font-bold leading-snug text-teal">
+                    مجهز به هوش مصنوعی با تحلیل اختصاصی
                   </div>
                 </div>
               </div>
