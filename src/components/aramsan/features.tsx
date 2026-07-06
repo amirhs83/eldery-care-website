@@ -1,9 +1,7 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
-import { toFa } from "@/lib/format";
 
 /* =================== ICONS =================== */
 type IconProps = { className?: string };
@@ -153,34 +151,31 @@ export function Features() {
       />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        {/* Header: title + gauge */}
-        <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-[1fr_auto] sm:gap-12">
-          <div>
-            <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-              امکانات آرامسن
-            </span>
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mt-3 text-teal font-extrabold leading-[1.12] tracking-tight"
-              style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", fontFamily: "var(--font-vazirmatn)" }}
-            >
-              مراقبتی که حتی وقتی خوابید، بیدار است.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-4 max-w-xl text-[1.02rem] leading-[1.85] text-muted-ink"
-            >
-              آرامسن فقط موقعیت را ثبت نمی‌کند؛ با هوش مصنوعی، روزمره‌ی عزیزتان را
-              می‌فهمد و تنها وقتی چیزی خارج از روال عادی است، شما را مطلع می‌کند.
-            </motion.p>
-          </div>
-          <PeaceScoreGauge />
+        {/* Header */}
+        <div className="max-w-2xl">
+          <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
+            امکانات آرامسن
+          </span>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="mt-3 text-teal font-extrabold leading-[1.12] tracking-tight"
+            style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", fontFamily: "var(--font-vazirmatn)" }}
+          >
+            مراقبتی که حتی وقتی خوابید، بیدار است.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-4 max-w-xl text-[1.02rem] leading-[1.85] text-muted-ink"
+          >
+            آرامسن فقط موقعیت را ثبت نمی‌کند؛ با هوش مصنوعی، روزمره‌ی عزیزتان را
+            می‌فهمد و تنها وقتی چیزی خارج از روال عادی است، شما را مطلع می‌کند.
+          </motion.p>
         </div>
 
         {/* Flagship spotlight — تشخیص سقوط */}
@@ -291,66 +286,5 @@ function FeatureCard({
         {desc}
       </p>
     </motion.article>
-  );
-}
-
-/* Compact circular gauge — sits beside the heading */
-function PeaceScoreGauge() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
-  const score = 92;
-
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => toFa(Math.round(v)));
-
-  const R = 52;
-  const C = 2 * Math.PI * R;
-  const arcLen = 0.75 * C;
-  const targetOffset = arcLen * (1 - score / 100);
-
-  useEffect(() => {
-    if (inView) {
-      const controls = animate(count, score, { duration: 1.6, ease: "easeOut" });
-      return controls.stop;
-    }
-  }, [inView, count, score]);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="flex shrink-0 flex-col items-center"
-    >
-      <span className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-ink">
-        Family Peace Score
-      </span>
-      <div className="relative h-32 w-32 sm:h-36 sm:w-36">
-        <svg viewBox="0 0 140 140" className="h-full w-full -rotate-[135deg]">
-          <circle cx="70" cy="70" r={R} fill="none" stroke="#e3d9c9" strokeWidth="8" strokeLinecap="round" strokeDasharray={`${arcLen} ${C}`} />
-          <motion.circle
-            cx="70"
-            cy="70"
-            r={R}
-            fill="none"
-            stroke="#1c3e3a"
-            strokeWidth="8"
-            strokeLinecap="round"
-            strokeDasharray={`${arcLen} ${C}`}
-            initial={{ strokeDashoffset: arcLen }}
-            animate={inView ? { strokeDashoffset: targetOffset } : {}}
-            transition={{ duration: 1.6, ease: "easeOut" }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <motion.span className="text-teal font-extrabold leading-none nums-fa" style={{ fontSize: "2rem", fontFamily: "var(--font-vazirmatn)" }}>
-            {rounded}
-          </motion.span>
-          <span className="text-[0.66rem] text-muted-ink">از ۱۰۰</span>
-        </div>
-      </div>
-    </motion.div>
   );
 }
