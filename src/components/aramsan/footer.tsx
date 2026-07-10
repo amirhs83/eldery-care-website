@@ -39,7 +39,7 @@ export function Footer() {
             </h4>
             <ul className="mt-4 space-y-2.5 text-[0.95rem]">
               {[
-                { l: "درباره ما", href: "#" },
+                { l: "درباره ما", href: "#about" },
                 { l: "وبلاگ", href: "#blog" },
                 { l: "سوالات متداول", href: "#faq" },
                 { l: "تماس با ما", href: "#" },

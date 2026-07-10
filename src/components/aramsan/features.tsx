@@ -250,6 +250,19 @@ export function Features() {
             ))}
           </div>
         </div>
+
+        {/* Link to About / founder story */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="#about"
+            className="group inline-flex items-center gap-2 rounded-full border border-divider bg-warmwhite px-5 py-2.5 text-[0.92rem] font-semibold text-teal transition-all hover:-translate-y-0.5 hover:border-teal-light/40 hover:bg-warmwhite"
+          >
+            درباره ما بیشتر بدانید
+            <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:-translate-x-1" fill="none">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );
