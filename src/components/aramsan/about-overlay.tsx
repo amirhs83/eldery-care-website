@@ -166,7 +166,7 @@ export function AboutOverlay() {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-6 text-[0.9rem] font-semibold text-muted-ink"
                   >
-                    [نام شما]، بنیان‌گذار آرامسن
+                    امیر حصاری، بنیان‌گذار آرامسن
                   </motion.p>
 
                   {/* CTA — same style as the waitlist section's primary button */}
