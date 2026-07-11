@@ -113,7 +113,7 @@ export function BlogOverlay() {
           className="fixed inset-0 z-[90] bg-ivory"
           role="dialog"
           aria-modal="true"
-          aria-label="وبلاگ آرامسن"
+          aria-label="وبلاگ سن یار"
         >
           {/* top bar */}
           <div className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-divider bg-ivory/90 px-5 backdrop-blur-xl sm:px-8">
@@ -139,7 +139,7 @@ export function BlogOverlay() {
                 className="text-[1.1rem] font-extrabold text-teal"
                 style={{ fontFamily: "var(--font-vazirmatn)" }}
               >
-                آرامسن
+                سن یار
               </span>
             </div>
 
@@ -248,7 +248,7 @@ function BlogList({ onOpen }: { onOpen: (slug: string) => void }) {
       className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-14"
     >
       <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-        وبلاگ آرامسن
+        وبلاگ سن یار
       </span>
       <h1
         className="mt-3 text-teal font-extrabold leading-[1.15] tracking-tight"
@@ -273,7 +273,7 @@ function BlogList({ onOpen }: { onOpen: (slug: string) => void }) {
       {/* CTA */}
       <div className="mt-16 overflow-hidden rounded-[1.75rem] border border-divider bg-sand/60 px-6 py-8 text-center sm:px-10">
         <h3 className="text-[1.3rem] font-extrabold text-teal sm:text-[1.5rem]">
-          نوشته‌های جدید آرامسن را از دست ندهید.
+          نوشته‌های جدید سن یار را از دست ندهید.
         </h3>
         <p className="mx-auto mt-2 max-w-md text-[0.95rem] leading-relaxed text-muted-ink">
           با عضویت در لیست انتظار، علاوه بر تخفیف ۵۰٪، از جدیدترین نوشته‌ها هم
@@ -606,8 +606,8 @@ function BlogArticle({
             <AramsanMark className="h-6 w-6" tone="ivory" />
           </span>
           <div>
-            <div className="text-[0.95rem] font-bold text-teal">تیم آرامسن</div>
-            <div className="text-[0.8rem] text-muted-ink">نوشته‌ی تیم تحریریه‌ی آرامسن</div>
+            <div className="text-[0.95rem] font-bold text-teal">تیم سن یار</div>
+            <div className="text-[0.8rem] text-muted-ink">نوشته‌ی تیم تحریریه‌ی سن یار</div>
           </div>
         </div>
         <ShareButton title={post.title} />
@@ -817,9 +817,9 @@ function useArticleMeta(post: PublicPost | null) {
       // back to the page defaults from <head>. Since the original landing-page
       // metadata is static and known, we restore to those values so the home
       // page meta is correct again.
-      const HOME_TITLE = "آرامسن | آرامش خاطر برای خانواده‌ها";
+      const HOME_TITLE = "سن یار | آرامش خاطر برای خانواده‌ها";
       const HOME_DESC =
-        "ردیاب هوشمند با هوش مصنوعی و ایستگاه درب اختصاصی آرامسن برای مراقبت از سالمندان، کودکان و عزیزان شما. مجهز به هوش مصنوعی با تحلیل اختصاصی رفتار و فعالیت. جزو اولین خانواده‌های آرامسن باشید و ۵۰٪ تخفیف مادام‌العمر دریافت کنید.";
+        "ردیاب هوشمند با هوش مصنوعی و ایستگاه درب اختصاصی سن یار برای مراقبت از سالمندان، کودکان و عزیزان شما. مجهز به هوش مصنوعی با تحلیل اختصاصی رفتار و فعالیت. جزو اولین خانواده‌های سن یار باشید و ۵۰٪ تخفیف مادام‌العمر دریافت کنید.";
       setMeta("name", "description", HOME_DESC);
       setMeta("property", "og:title", HOME_TITLE);
       setMeta("property", "og:description", HOME_DESC);

@@ -23,11 +23,11 @@ export function Footer() {
                 className="text-[1.5rem] font-extrabold tracking-tight text-ivory"
                 style={{ fontFamily: "var(--font-vazirmatn)" }}
               >
-                آرامسن
+                سن یار
               </span>
             </div>
             <p className="mt-4 max-w-sm text-[0.92rem] leading-[1.9] text-ivory/60">
-              آرامش، امنیت و مراقبت از عزیزان. آرامسن همراهِ آرام خانواده‌هاست،
+              آرامش، امنیت و مراقبت از عزیزان. سن یار همراهِ آرام خانواده‌هاست،
               حتی وقتی کنارشان نیستید.
             </p>
           </div>
@@ -35,7 +35,7 @@ export function Footer() {
           {/* links */}
           <div className="sm:col-span-4">
             <h4 className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-ivory/40">
-              آرامسن
+              سن یار
             </h4>
             <ul className="mt-4 space-y-2.5 text-[0.95rem]">
               {[
@@ -78,7 +78,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-ivory/10 pt-6 text-center sm:flex-row sm:text-right">
           <p className="text-[0.82rem] text-ivory/50">
-            © {year} آرامسن. تمامی حقوق محفوظ است.
+            © {year} سن یار. تمامی حقوق محفوظ است.
           </p>
           <p className="text-[0.82rem] text-ivory/50">
             با عشق برای خانواده‌ها طراحی شده است.

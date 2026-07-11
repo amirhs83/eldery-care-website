@@ -43,11 +43,11 @@ const POSTS: Post[] = [
     title: "دکمه‌ی اضطراری SOS: یک فاصله تا آرامش",
     excerpt:
       "وقتی یک دکمه‌ی ساده می‌تواند فاصله‌ی میان نگرانی و آرامش باشد. کاربرد واقعی دکمه‌ی SOS در لحظاتی که شمارش ثانیه‌ها مهم است.",
-    category: "امکانات آرامسن",
+    category: "امکانات سن یار",
     readTime: "۴ دقیقه",
     date: "۲۸ اردیبهشت ۱۴۰۴",
     img: "/blog/sos.png",
-    alt: "ردیاب هوشمند آرامسن با دکمه‌ی اضطراری تراکوتا",
+    alt: "ردیاب هوشمند سن یار با دکمه‌ی اضطراری تراکوتا",
   },
   {
     slug: "charge-va-rog'bat",
@@ -58,7 +58,7 @@ const POSTS: Post[] = [
     readTime: "۳ دقیقه",
     date: "۲۰ اردیبهشت ۱۴۰۴",
     img: "/blog/battery.png",
-    alt: "ردیاب آرامسن روی ایستگاه شارژ کنار در با نور سبز",
+    alt: "ردیاب سن یار روی ایستگاه شارژ کنار در با نور سبز",
   },
 ];
 
@@ -70,7 +70,7 @@ export function Blog() {
         <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
             <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-              وبلاگ آرامسن
+              وبلاگ سن یار
             </span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -111,7 +111,7 @@ export function Blog() {
         {/* newsletter-ish gentle CTA */}
         <div className="mt-14 overflow-hidden rounded-[1.75rem] border border-divider bg-sand/60 px-6 py-8 text-center sm:px-10">
           <h3 className="text-[1.3rem] font-extrabold text-teal sm:text-[1.5rem]">
-            نوشته‌های جدید آرامسن را از دست ندهید.
+            نوشته‌های جدید سن یار را از دست ندهید.
           </h3>
           <p className="mx-auto mt-2 max-w-md text-[0.95rem] leading-relaxed text-muted-ink">
             با عضویت در لیست انتظار، علاوه بر تخفیف ۵۰٪، از新しい نوشته‌ها هم

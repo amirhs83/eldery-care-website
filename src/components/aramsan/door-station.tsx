@@ -35,7 +35,7 @@ export function DoorStation() {
               دیگر نه.
             </h2>
             <p className="mt-4 max-w-md text-[1.05rem] leading-[1.9] text-ivory/70">
-              راهکاری که برای فراموشی طراحی شده است. ایستگاه آرامسن کنار در،
+              راهکاری که برای فراموشی طراحی شده است. ایستگاه سن یار کنار در،
               خروج بدون ردیاب را تشخیص می‌دهد و با یک یادآوری ملایم، فراموشی را به
               آرامش تبدیل می‌کند.
             </p>
@@ -89,7 +89,7 @@ export function DoorStation() {
             </div>
             <motion.img
               src="/products/door-station.png"
-              alt="ایستگاه درب هوشمند آرامسن — دستگاهی ظریف کنار در با نور سبز"
+              alt="ایستگاه درب هوشمند سن یار — دستگاهی ظریف کنار در با نور سبز"
               className="relative z-10 w-full max-w-xs rounded-[2rem] object-cover shadow-[0_40px_80px_-30px_rgba(0,0,0,0.55)]"
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}

@@ -124,7 +124,7 @@ export function AdminOverlay() {
           className="fixed inset-0 z-[95] bg-ivory"
           role="dialog"
           aria-modal="true"
-          aria-label="پنل مدیریت آرامسن"
+          aria-label="پنل مدیریت سن یار"
         >
           <SonnerToaster position="top-center" richColors closeButton />
 
@@ -152,7 +152,7 @@ export function AdminOverlay() {
                 className="text-[1.1rem] font-extrabold text-teal"
                 style={{ fontFamily: "var(--font-vazirmatn)" }}
               >
-                آرامسن
+                سن یار
               </span>
               <span className="ms-2 hidden text-[0.78rem] text-muted-ink sm:inline">
                 / پنل مدیریت
@@ -271,7 +271,7 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
             className="text-[1.3rem] font-extrabold text-teal"
             style={{ fontFamily: "var(--font-vazirmatn)" }}
           >
-            آرامسن
+            سن یار
           </span>
         </div>
         <h1 className="mt-5 text-center text-[1.4rem] font-extrabold text-teal">

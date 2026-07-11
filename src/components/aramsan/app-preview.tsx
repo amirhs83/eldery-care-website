@@ -18,7 +18,7 @@ export function AppPreview() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="mb-12 max-w-2xl">
           <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-            اپلیکیشن آرامسن
+            اپلیکیشن سن یار
           </span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -31,7 +31,7 @@ export function AppPreview() {
             همه چیز، یک لمس دور از شما.
           </motion.h2>
           <p className="mt-4 text-[1.02rem] leading-[1.9] text-muted-ink">
-            اپلیکیشن آرامسن، خانه‌ی مشترک خانواده؛ از موقعیت زنده تا گزارش روزانه
+            اپلیکیشن سن یار، خانه‌ی مشترک خانواده؛ از موقعیت زنده تا گزارش روزانه
             و داشبورد آرامش.
           </p>
         </div>

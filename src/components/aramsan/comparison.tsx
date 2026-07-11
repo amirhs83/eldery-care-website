@@ -32,7 +32,7 @@ export function Comparison() {
             className="mt-3 text-teal font-extrabold leading-[1.15] tracking-tight"
             style={{ fontSize: "clamp(1.9rem, 4vw, 3rem)", fontFamily: "var(--font-vazirmatn)" }}
           >
-            آرامسن در برابر ساعت‌های هوشمند رایج
+            سن یار در برابر ساعت‌های هوشمند رایج
           </motion.h2>
         </div>
 
@@ -41,13 +41,13 @@ export function Comparison() {
           {/* header */}
           <div className="grid grid-cols-12 bg-ivory px-5 py-4 text-[0.82rem] font-bold sm:px-7">
             <div className="col-span-6 text-muted-ink">ویژگی</div>
-            <div className="col-span-3 text-center text-teal">آرامسن</div>
+            <div className="col-span-3 text-center text-teal">سن یار</div>
             <div className="col-span-3 text-center text-muted-ink">ساعت هوشمند</div>
           </div>
 
-          {/* body — آرامسن column has a relative wrapper for the sweep */}
+          {/* body — سن یار column has a relative wrapper for the sweep */}
           <div className="relative">
-            {/* sweep highlight on آرامسن column */}
+            {/* sweep highlight on سن یار column */}
             <motion.div
               aria-hidden
               initial={{ y: "-100%" }}

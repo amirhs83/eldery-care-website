@@ -38,7 +38,7 @@ export function Navbar() {
           <a
             href="#top"
             className="group inline-flex items-center"
-            aria-label="آرامسن — خانه"
+            aria-label="سن یار — خانه"
           >
             <AramsanWordmark className="transition-opacity group-hover:opacity-80" />
           </a>
@@ -46,7 +46,7 @@ export function Navbar() {
           {/* Center nav (desktop only) — quiet, secondary */}
           <div className="hidden items-center gap-8 text-[0.92rem] text-muted-ink md:flex">
             <a href="#story" className="transition-colors hover:text-teal">
-              داستان آرامسن
+              داستان سن یار
             </a>
             <a href="#features" className="transition-colors hover:text-teal">
               امکانات

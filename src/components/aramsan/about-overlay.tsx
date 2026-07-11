@@ -72,7 +72,7 @@ export function AboutOverlay() {
           className="fixed inset-0 z-[90] bg-ivory"
           role="dialog"
           aria-modal="true"
-          aria-label="درباره آرامسن"
+          aria-label="درباره سن یار"
         >
           {/* top bar */}
           <div className="sticky top-0 z-10 flex h-16 items-center justify-between border-b border-divider bg-ivory/90 px-5 backdrop-blur-xl sm:px-8">
@@ -98,7 +98,7 @@ export function AboutOverlay() {
                 className="text-[1.1rem] font-extrabold text-teal"
                 style={{ fontFamily: "var(--font-vazirmatn)" }}
               >
-                آرامسن
+                سن یار
               </span>
             </div>
 
@@ -126,7 +126,7 @@ export function AboutOverlay() {
                 {/* Text column (right in RTL) */}
                 <div className="order-2 lg:order-1">
                   <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-                    داستان آرامسن
+                    داستان سن یار
                   </span>
                   <motion.h1
                     initial={{ opacity: 0, y: 14 }}
@@ -138,14 +138,14 @@ export function AboutOverlay() {
                       fontFamily: "var(--font-vazirmatn)",
                     }}
                   >
-                    چرا آرامسن رو ساختم
+                    چرا سن یار رو ساختم
                   </motion.h1>
 
                   <div className="mt-7 space-y-5">
                     {[
                       "پدربزرگم رو خیلی دوست دارم، ولی نگهداری ازش برای خانواده‌مون همیشه ساده نبود. توی چند سال اخیر، دو بار لگنش شکست و یک بار هم سرش؛ یک بار هم بیهوش شد.",
                       "بچه‌هاش هر کاری از دستشون برمی‌اومد می‌کردن، ولی نمی‌شد همیشه و همه‌جا کنارش بود. این نگرانی همیشگی - این حس که شاید همین الان یه اتفاقی بیفته و کسی نفهمه - چیزیه که خیلی از خانواده‌ها باهاش زندگی می‌کنن.",
-                      "به‌جای اینکه فقط نگران بمونم، تصمیم گرفتم آرامسن رو بسازم: راهی برای اینکه وقتی نمی‌تونیم کنارشون باشیم، لااقل زودتر از افتادن یا بی‌حرکتی غیرعادی باخبر بشیم. خوشحالم بگم پدربزرگم الان تحت مراقبته و حالش خوبه؛ آرامسن رو می‌سازم برای هر خانواده‌ای که همین آرامش خاطر رو می‌خواد.",
+                      "به‌جای اینکه فقط نگران بمونم، تصمیم گرفتم سن یار رو بسازم: راهی برای اینکه وقتی نمی‌تونیم کنارشون باشیم، لااقل زودتر از افتادن یا بی‌حرکتی غیرعادی باخبر بشیم. خوشحالم بگم پدربزرگم الان تحت مراقبته و حالش خوبه؛ سن یار رو می‌سازم برای هر خانواده‌ای که همین آرامش خاطر رو می‌خواد.",
                     ].map((p, i) => (
                       <motion.p
                         key={i}
@@ -166,7 +166,7 @@ export function AboutOverlay() {
                     transition={{ duration: 0.5, delay: 0.6 }}
                     className="mt-6 text-[0.9rem] font-semibold text-muted-ink"
                   >
-                    امیر حصاری، بنیان‌گذار آرامسن
+                    امیر حصاری، بنیان‌گذار سن یار
                   </motion.p>
 
                   {/* CTA — same style as the waitlist section's primary button */}
@@ -189,7 +189,7 @@ export function AboutOverlay() {
                     {/* اینجا عکس واقعی بنیان‌گذار یا پدربزرگ جایگزین بشه */}
                     <img
                       src="/founder/founder.png"
-                      alt="بنیان‌گذار آرامسن"
+                      alt="بنیان‌گذار سن یار"
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />

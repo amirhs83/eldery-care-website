@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * آرامسن logo mark — a protective ring with a gentle leaf inside,
+ * سن یار logo mark — a protective ring with a gentle leaf inside,
  * drawn as a single SVG so it always feels custom, not an icon-pack default.
  */
 export function AramsanMark({
@@ -69,7 +69,7 @@ export function AramsanWordmark({
         )}
         style={{ fontFamily: "var(--font-vazirmatn)" }}
       >
-        آرامسن
+        سن یار
       </span>
     </span>
   );

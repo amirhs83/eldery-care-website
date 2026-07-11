@@ -154,7 +154,7 @@ export function Features() {
         {/* Header */}
         <div className="max-w-2xl">
           <span className="inline-block text-[0.82rem] font-semibold uppercase tracking-[0.2em] text-terracotta">
-            امکانات آرامسن
+            امکانات سن یار
           </span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -173,7 +173,7 @@ export function Features() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-4 max-w-xl text-[1.02rem] leading-[1.85] text-muted-ink"
           >
-            آرامسن فقط موقعیت را ثبت نمی‌کند؛ با هوش مصنوعی، روزمره‌ی عزیزتان را
+            سن یار فقط موقعیت را ثبت نمی‌کند؛ با هوش مصنوعی، روزمره‌ی عزیزتان را
             می‌فهمد و تنها وقتی چیزی خارج از روال عادی است، شما را مطلع می‌کند.
           </motion.p>
         </div>
@@ -204,7 +204,7 @@ export function Features() {
                 تشخیص سقوط
               </h3>
               <p className="mt-3 text-[1.02rem] leading-[1.9] text-muted-ink">
-                اگر عزیزتان تعادلش را از دست داد و زمین خورد، آرامسن در کمتر از ۱۰
+                اگر عزیزتان تعادلش را از دست داد و زمین خورد، سن یار در کمتر از ۱۰
                 ثانیه وضعیت را تشخیص می‌دهد و به شما هشدار می‌دهد؛ حتی اگر خودش
                 نتواند کمک بخواهد.
               </p>

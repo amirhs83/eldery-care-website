@@ -77,7 +77,7 @@ export function Waitlist() {
           className="inline-flex items-center gap-2 rounded-full border border-ivory/15 bg-ivory/5 px-3.5 py-1.5 text-[0.78rem] font-semibold text-terracotta-light"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-terracotta-light" />
-          لیست انتظار آرامسن
+          لیست انتظار سن یار
         </motion.span>
 
         <motion.h2
@@ -88,10 +88,10 @@ export function Waitlist() {
           className="mt-5 font-extrabold leading-[1.12] tracking-tight"
           style={{ fontSize: "clamp(2rem, 5vw, 3.4rem)", fontFamily: "var(--font-vazirmatn)" }}
         >
-          جزو اولین خانواده‌های آرامسن باشید.
+          جزو اولین خانواده‌های سن یار باشید.
         </motion.h2>
         <p className="mx-auto mt-4 max-w-xl text-[1.05rem] leading-[1.9] text-ivory/70">
-          اعضای اولیه آرامسن برای همیشه ۵۰٪ تخفیف دریافت خواهند کرد.
+          اعضای اولیه سن یار برای همیشه ۵۰٪ تخفیف دریافت خواهند کرد.
         </p>
 
         {/* Form card */}
@@ -127,7 +127,7 @@ export function Waitlist() {
               label="پیشنهاد، انتقاد یا نکته‌ای که دوست دارید (اختیاری)"
               value={feedback}
               onChange={setFeedback}
-              placeholder="مثلاً: برای چه شرایطی بیشترین نیاز به آرامسن دارید؟"
+              placeholder="مثلاً: برای چه شرایطی بیشترین نیاز به سن یار دارید؟"
             />
           </div>
 
@@ -252,7 +252,7 @@ function SuccessModal({
   };
 
   const shareText = encodeURIComponent(
-    "من جزو اولین خانواده‌های آرامسن شدم. تو هم عضو شو و ۵۰٪ تخفیف مادام‌العمر بگیر:"
+    "من جزو اولین خانواده‌های سن یار شدم. تو هم عضو شو و ۵۰٪ تخفیف مادام‌العمر بگیر:"
   );
   const waUrl = `https://wa.me/?text=${shareText}%20${encodeURIComponent(shareUrl)}`;
   const tgUrl = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${shareText}`;
@@ -302,7 +302,7 @@ function SuccessModal({
         </div>
 
         <h3 className="text-[1.4rem] font-extrabold text-teal" style={{ fontFamily: "var(--font-vazirmatn)" }}>
-          به خانواده آرامسن خوش آمدید 🌿
+          به خانواده سن یار خوش آمدید 🌿
         </h3>
         <p className="mt-2 text-[0.95rem] text-muted-ink">
           {result.name} عزیز، شما{" "}

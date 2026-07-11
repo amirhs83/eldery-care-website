@@ -68,7 +68,7 @@ export function MidScrollCta() {
                   </svg>
                 </div>
                 <p className="text-[1.05rem] font-semibold text-teal">
-                  به خانواده آرامسن خوش آمدید 🌿
+                  به خانواده سن یار خوش آمدید 🌿
                 </p>
                 <p className="text-[0.92rem] text-muted-ink">
                   شما{" "}

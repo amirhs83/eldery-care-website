@@ -149,7 +149,7 @@ export function Hero() {
               <span className="font-semibold text-teal nums-fa">
                 {toFa(500)}
               </span>{" "}
-              خانواده در انتظار عرضه آرامسن هستند.
+              خانواده در انتظار عرضه سن یار هستند.
             </span>
           </motion.div>
         </div>
@@ -185,7 +185,7 @@ export function Hero() {
             >
               <img
                 src="/products/hero-tracker.png"
-                alt="ردیاب هوشمند آرامسن مجهز به هوش مصنوعی — دستگاهی ظریف با روکش سرامیک فیروزه‌ای تیره، حلقه‌ی تراکوتا و طناب گردنبند مشکی"
+                alt="ردیاب هوشمند سن یار مجهز به هوش مصنوعی — دستگاهی ظریف با روکش سرامیک فیروزه‌ای تیره، حلقه‌ی تراکوتا و طناب گردنبند مشکی"
                 className="h-full w-full rounded-[2rem] object-cover"
                 loading="eager"
               />
